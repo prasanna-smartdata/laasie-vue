@@ -1,0 +1,10 @@
+.DS_Store
+
+venv/
+instance/
+
+.env
+
+.pytest_cache/
+.mypy_cache/
+flask_session/

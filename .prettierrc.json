@@ -1,0 +1,25 @@
+{
+  "tabWidth": 4,
+  "semi": true,
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": ".github/workflows/*.yml",
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "Pulumi.yaml",
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "Pulumi.*.yaml",
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}
