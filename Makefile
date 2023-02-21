@@ -1,14 +1,15 @@
 .PHONY: ensure_venv
 ensure_venv:
-	cd api && python3 -m venv venv
+	
+	cd api && py -3 -m venv C:\smartdata\MarketVentures\laasie-vue\api\.venv
 
 .PHONY: ensure_api
 ensure_api: ensure_venv
-	cd api && . ./venv/bin/activate && pip install -r requirements.txt
+	cd api &&  C:\smartdata\MarketVentures\laasie-vue\api\.venv\Scripts\activate && pip install -r requirements.txt
 
 .PHONY: ensure_api_win
 ensure_api_win: ensure_venv
-	cd api && powershell .\venv\bin\Activate.ps1 && pip install -r requirements.txt
+	cd api && powershell C:\smartdata\MarketVentures\laasie-vue\api\.venv\Scripts\Activate.ps1 && pip install -r requirements.txt
 
 .PHONY: ensure_ui
 ensure_ui:
@@ -26,7 +27,7 @@ build: build_ui
 
 .PHONY: lint_api
 lint_api:
-	cd api && . ./venv/bin/activate && pylint . && mypy .
+	cd api && . C:\smartdata\MarketVentures\laasie-vue\api\.venv\Scripts\activate && pylint . && mypy .
 
 .PHONY: lint_ui
 lint_ui:
@@ -40,7 +41,10 @@ run_api: build
 	@echo "******"
 	@echo "Running script as sudo. You may be prompted to enter the password..."
 	@echo "******"
-	sudo ./scripts/start-api.sh
+
+	 set FLASK_APP=api
+	  flask --debug --app C:\smartdata\MarketVentures\laasie-vue\api:create_app run --cert C:\smartdata\MarketVentures\laasie-vue\api\localhost.crt --key C:\smartdata\MarketVentures\laasie-vue\api\localhost.key -p 443
+
 
 .PHONY: run_ui
 run_ui:
@@ -49,3 +53,10 @@ run_ui:
 .PHONY: api_test
 api_test:
 	PYTHONPATH=. pytest
+
+.PHONY: clean
+clean:
+
+ifeq ($(OS),Windows_NT)
+	del /s *.o *.d *.elf *.map *.log
+endif

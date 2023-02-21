@@ -105,6 +105,7 @@ def oauth2_callback() -> Union[str, Response, wrappers.Response]:
     to this endpoint upon the user's successful authentication.
     """
     try:
+        logger.info("inside /callback")
         pre_oauth2_callback()
     except InvalidRequestException as ex:
         flash(ex.message, "error")
@@ -114,7 +115,7 @@ def oauth2_callback() -> Union[str, Response, wrappers.Response]:
     tenant_subdomain = default_tenant_subdomain
     # tssd is the end-user's subdomain. If present, we should use that.
     tssd = flask_request.args.get("tssd")
-
+ 
     if tssd is not None:  # Validate the format of the tssd param.
         if tssd_regex.fullmatch(tssd) is None:
             flash("Invalid value provided in the tssd param.", "error")
@@ -162,6 +163,7 @@ def refresh_token():
     Called by the UI periodically to refresh its access token
     and the refresh token.
     """
+    print(flask_request.cookies)
     if TSSD_COOKIE_NAME not in flask_request.cookies:
         return Response(status=401)
     if REFRESH_TOKEN_COOKIE_NAME not in flask_request.cookies:

@@ -33,6 +33,7 @@ export const settings = {
 export const defaultCategoryName = "Laasie Collection Templates";
 
 const client = axios.default.create({
+    baseURL:"https://app.localhost",
     timeout: 20 * 1000,
 });
 
@@ -43,12 +44,14 @@ client.interceptors.request.use(
     getRequestInterceptor(
         settings.maxTokenLifetime,
         settings.accessTokenCookieName,
+        settings.tenantSubDomainCookieName,
         refreshSfmcToken,
         false
     )
 );
 
 client.interceptors.response.use(undefined, (err) => {
+    console.log(err)
     if (err.response.status === 401) {
         window.location.href = "/oauth2/sfmc/authorize";
         return;
@@ -254,6 +257,7 @@ export async function getThumbnailBase64(
 }
 
 export async function getUserInfo(): Promise<UserInfo> {
+     
     const response = await client.get<UserInfo>("/api/sfmc/userinfo");
     return response.data;
 }

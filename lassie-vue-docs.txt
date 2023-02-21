@@ -1,0 +1,14 @@
+1) py -3 -m venv C:\smartdata\MarketVentures\laasie-vue\api\.venv
+
+2).venv\Scripts\activate
+
+& c:/smartdata/MarketVentures/laasie-vue/api/.venv/Scripts/Activate.ps1
+
+deactivate
+
+make run_api
+make run_ui
+
+http proxy error at /oauth2/sfmc/refresh_token:
+
+https://mcftllc2rwg-b3-r6878b77j8gv4.auth.marketingcloudapis.com/v2/authorize?client_id=774c3tmx68m7ncfffddgo77p&response_type=code&redirect_uri=https://app.localhost:3000/oauth2/sfmc/callback&state=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NzY5ODY5NjV9.0e6IteStIPkqDlRnK_kvNQ50r0dcqOGHGTEO3FnvbOk

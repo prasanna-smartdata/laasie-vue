@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export FLASK_APP=api
+set FLASK_APP=api
 
 if [[ "$EUID" -ne 0 ]]; then
     echo "******"
@@ -10,4 +10,4 @@ if [[ "$EUID" -ne 0 ]]; then
 fi
 
 # --debug will set FLASK_DEBUG to True automatically.
-flask --debug --app api:create_app run --cert ./api/localhost.crt --key ./api/localhost.key -p 443
+flask --debug --app C:\smartdata\MarketVentures\laasie-vue\api:create_app run --cert C:\smartdata\MarketVentures\laasie-vue\api\localhost.crt --key C:\smartdata\MarketVentures\laasie-vue\api\localhost.key -p 443

@@ -52,6 +52,7 @@ def before_request():
     Checks for the tenant sub-domain and the SFMC access token cookies
     and that the access token passes signature verification.
     """
+    
     if sfmc_oauth2.TSSD_COOKIE_NAME not in flask_request.cookies:
         logger.error("tssd cookie was empty.")
         return FlaskResponse(status=401)
@@ -109,6 +110,7 @@ def get_user_info():
     """
     Get the currently logged-in user's info.
     """
+    
     tenant_subdomain = g.tenant_subdomain
     decoded_token = g.decoded_token
 

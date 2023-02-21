@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@salesforce-ux/design-system": "^2.20.1",
+    "dotenv": "^16.0.3",
+    "requests": "^0.3.0",
+    "vuex": "^4.1.0"
+  }
+}

@@ -1,32 +1,51 @@
 <template>
-    <LoadingSpinner v-if="loading"></LoadingSpinner>
-    <header class="slds-global-header_container">
-        <div class="slds-global-header slds-grid slds-grid_align-end">
-            <div class="slds-global-header__item slds-size_5-of-6">
-                <span class="slds-text-heading_small">Laasie Onboarding</span>
-            </div>
-            <div class="slds-global-header__item slds-size_1-of-6"></div>
+    <div class="slds-theme_default"  style=" height: 650px" >
+        <LoadingSpinner v-if="loading"></LoadingSpinner>
+
+        <div className=" slds-text-heading_medium slds-m-left_small slds-m-top_xx-small">
+            
+            Configuration Pages
         </div>
-    </header>
-    <main style="margin-top: 4rem">
-        <RouterView />
-    </main>
+
+        <div
+            class="slds-box slds-m-top--large slds-m-left_small slds-m-right_small">
+            <div class="slds-m-top--xxx-large">
+                <Header></Header>
+            </div>
+        </div>
+        <div
+            class="slds-m-around_small slds-border_bottom slds-border_top slds-border_left slds-border_right"
+        >
+            <RouterView />
+        </div>
+    </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { RouterView } from "vue-router";
+import { onMounted, onUpdated, ref } from "vue";
+import { RouterView, useRouter } from "vue-router";
 
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
+import Header from "@/components/HeaderComponent.vue";
 
 import Cookies from "js-cookie";
 
 import { initLaasieApiAccessToken } from "@/externalApiClient";
+import { getUserInfo } from "@/sfmcClient";
 
 const loading = ref(false);
 const csrfToken = ref<string>();
-
 onMounted(async () => {
-    await initLaasieApiAccessToken();
+    // await initLaasieApiAccessToken();
     csrfToken.value = Cookies.get("X-CSRF-Token");
+    try {
+    const userInfo = await getUserInfo();
+        console.log(userInfo);
+    } catch (error) {
+        console.log(error);
+    }
 });
+
+onUpdated(async ()=>{
+   
+})
 </script>

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import HomeView from "@/views/HomeView.vue";
-import OnboardingView from "@/views/OnboardingView.vue";
+import OnboardingView from "@/views/ApplicationSetupView.vue";
 import ContentBlockView from "@/views/ContentBlockView.vue";
 
 /**
@@ -33,7 +33,7 @@ const router = createRouter({
             beforeEnter: assertSfmcParent,
             children: [
                 {
-                    path: "onboarding",
+                    path: "",
                     name: "onboarding",
                     component: OnboardingView,
                 },

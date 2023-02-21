@@ -26,6 +26,7 @@ function getSessionStartTime(): string | null {
 export function getRequestInterceptor(
     maxTokenLifetime: number,
     accessTokenCookieName: string,
+    tenantSubDomainCookieName:string,
     refreshTokenCallback: () => Promise<void>,
     addAuthHeader = true
 ): (config: AxiosRequestConfig) => Promise<AxiosRequestConfig> {
@@ -89,6 +90,8 @@ export function getRequestInterceptor(
         }
 
         config.headers["Authorization"] = `Bearer ${accessToken}`;
+        config.headers["sfmc_tssd"] = tenantSubDomainCookieName;
+
         return config;
     };
 }

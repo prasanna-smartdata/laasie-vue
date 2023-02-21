@@ -59,7 +59,7 @@ function closeAlert(id: number) {
 </script>
 
 <template>
-    <div class="slds-var-m-around_medium">
+    <div>
         <RouterView />
     </div>
     <AlertComponent
@@ -71,3 +71,22 @@ function closeAlert(id: number) {
         @close="closeAlert"
     ></AlertComponent>
 </template>
+<style>
+  @import url('../node_modules/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.min.css');
+
+  html {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+#app {
+    height: 100%;
+}
+#app > form {
+    max-width: 100%;
+  }
+
+  
+
+</style>

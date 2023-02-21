@@ -50,6 +50,6 @@ LAASIE_API_USERNAME = os.getenv("LAASIE_API_USERNAME", "")
 LAASIE_API_PASSWORD = os.getenv("LAASIE_API_PASSWORD", "")
 
 redirectUiToLocalhost = os.getenv("REDIRECT_UI_TO_LOCALHOST", "")
-REDIRECT_UI_TO_LOCALHOST = True
+REDIRECT_UI_TO_LOCALHOST = False
 if redirectUiToLocalhost == "" or redirectUiToLocalhost == "False":
     REDIRECT_UI_TO_LOCALHOST = False

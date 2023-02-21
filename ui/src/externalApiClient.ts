@@ -11,6 +11,7 @@ export const settings = {
 };
 
 export const client = axios.default.create({
+    baseURL: 'http://app.localhost',
     timeout: 30 * 1000,
 });
 // Add a request interceptor so that we can set the
@@ -20,6 +21,7 @@ client.interceptors.request.use(
     getRequestInterceptor(
         settings.maxTokenLifetime,
         settings.accessTokenCookieName,
+        "",
         refreshExternalToken
     )
 );

@@ -93,7 +93,7 @@ def create_app(test_config=None):
         generate_csrf()
 
         if env_config.REDIRECT_UI_TO_LOCALHOST:
-            url = f"https://app.localhost:3000/ui{flask_request.path}"
+            url = f"https://app.localhost/ui{flask_request.path}"
             logger.info("Redirecting to: %s", url)
             return redirect(url)
 
@@ -130,7 +130,10 @@ def create_app(test_config=None):
         )
         resp.content_security_policy.object_src = "'none'"
         resp.headers.add("X-Content-Type-Options", "nosniff")
-
+        resp.headers.add("Access-Control-Allow-Origin", "*")
+        resp.headers.add("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT")
+        resp.headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+ 
         if "csrf_token" in g:
             resp.set_cookie(
                 "X-CSRF-Token",
